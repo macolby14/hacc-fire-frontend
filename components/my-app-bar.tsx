@@ -11,6 +11,7 @@ import Link from './link';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    marginBottom: theme.spacing() * 2,
   },
   container: {
     flexGrow: 1,
