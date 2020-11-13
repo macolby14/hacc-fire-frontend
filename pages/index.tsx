@@ -1,24 +1,21 @@
 import Head from 'next/head';
-import { Box, Button, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
+import { Box, Typography } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../components/link';
-
-const useStyles = makeStyles((theme) => ({
-  autoSideMargin: {
-    margin: theme.spacing('auto', 'auto'),
-  },
-  marginTop: {
-    marginTop: theme.spacing() * 2,
-  },
-  marginTopDouble: {
-    marginTop: theme.spacing() * 4,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   autoSideMargin: {
+//     margin: theme.spacing('auto', 'auto'),
+//   },
+//   marginTop: {
+//     marginTop: theme.spacing() * 2,
+//   },
+//   marginTopDouble: {
+//     marginTop: theme.spacing() * 4,
+//   },
+// }));
 
 export default function Home() {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <div>
       <Head>

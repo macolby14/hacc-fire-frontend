@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 type DataFieldType = {
     label: string;
     value: string;
+    key: number;
 }
 
 type DataType = DataFieldType[];
@@ -26,7 +27,7 @@ type DataType = DataFieldType[];
 export default function BasicTextFields() {
   const classes = useStyles();
   const [data, setData] = useState<DataType>([
-    { label: 'Test', value: 'Testvalue' },
+    { label: 'Test', value: 'Testvalue', key: Math.random() },
   ]);
 
   const handleUpdateField = (newValue: string, type: string, index: number) => {
@@ -37,13 +38,13 @@ export default function BasicTextFields() {
   };
 
   const handleAddField = () => {
-    const newField = [{ label: 'Label', value: 'Value' }];
+    const newField = [{ label: 'Label', value: 'Value', key: Math.random() }];
     const newData = data.concat(newField);
     setData(newData);
   };
 
   const fields = data.map((field, ind) => (
-    <Box display="flex" flexDirection="row" key={ind}>
+    <Box display="flex" flexDirection="row" key={field.key}>
       <TextField
         className={classes.margin}
         id="filled-basic"
