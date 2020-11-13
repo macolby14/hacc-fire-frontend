@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
-import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import CustomForm from '../components/custom-form';
+
+// eslint-disable-next-line import/extensions
+import { TaskType } from '../shared/shared-types';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -16,12 +17,10 @@ const useStyles = makeStyles(() => ({
     width: '60%',
     height: '70vh',
   },
-  flexGrow: {
-    flexGrow: 1,
-  },
 }));
-
-export default function Viewer() {
+const Viewer = ({
+  pdfUrl, fieldInfo,
+}: Partial<TaskType>) => {
   const classes = useStyles();
   const [, setNumPages] = useState<number | null>(null);
   const [pageNumber] = useState(1);
@@ -29,22 +28,17 @@ export default function Viewer() {
   function onDocumentLoadSuccess({ numPages }: any) {
     setNumPages(numPages);
   }
-
   return (
-    <Box display="flex" flexDirection="row">
-      <Document
-        file="/pdf/ChineseArrivals_1847-1870_00001.pdf"
-        // file="/pdf/example_full.pdf"
-        onLoadSuccess={onDocumentLoadSuccess}
-        className={classes.viewer}
-      >
-        <div className={classes.scrollable}>
-          <Page pageNumber={pageNumber} />
-        </div>
-      </Document>
-      <div className={classes.flexGrow}>
-        <CustomForm />
+    <Document
+      file={pdfUrl}
+      onLoadSuccess={onDocumentLoadSuccess}
+      className={classes.viewer}
+    >
+      <div className={classes.scrollable}>
+        <Page pageNumber={pageNumber} />
       </div>
-    </Box>
+    </Document>
   );
-}
+};
+
+export default Viewer;

@@ -14,6 +14,7 @@
     "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.10.0",
     "@types/react-pdf": "^5.0.0",
+    "axios": "^0.21.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.16.1",
     "next": "^10.0.0",
