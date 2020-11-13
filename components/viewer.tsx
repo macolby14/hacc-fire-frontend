@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { makeStyles } from '@material-ui/core/styles';
 
-// eslint-disable-next-line import/extensions
-import { TaskType } from '../shared/shared-types';
-
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const useStyles = makeStyles(() => ({
@@ -19,8 +16,8 @@ const useStyles = makeStyles(() => ({
   },
 }));
 const Viewer = ({
-  pdfUrl, fieldInfo,
-}: Partial<TaskType>) => {
+  pdfUrl,
+}: {pdfUrl: string}) => {
   const classes = useStyles();
   const [, setNumPages] = useState<number | null>(null);
   const [pageNumber] = useState(1);

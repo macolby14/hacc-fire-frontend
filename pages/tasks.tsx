@@ -30,14 +30,18 @@ export default function Tasks() {
       });
   }, []);
 
-  return (
-    <Box display="flex" flexDirection="row">
-      {task != null
-        ? <Viewer pdfUrl={task.pdfUrl} fieldInfo={task.fieldInfo} />
-        : <div>Loading</div>}
-      <div className={classes.flexGrow}>
-        <CustomForm />
-      </div>
-    </Box>
-  );
+  let displayedTasks = <div>Loading...</div>;
+
+  if (task !== null) {
+    displayedTasks = (
+      <Box display="flex" flexDirection="row">
+        <Viewer pdfUrl={task.pdfUrl} />
+        <div className={classes.flexGrow}>
+          <CustomForm fieldInfo={task.fieldInfo} hasDynamicLabels={false} />
+        </div>
+      </Box>
+    );
+  }
+
+  return <>{displayedTasks}</>;
 }
