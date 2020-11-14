@@ -21,7 +21,7 @@ export default function Tasks() {
   const [isSubmittingTask, setIsSubmittingTask] = useState(false);
 
   const getTask = async () => {
-    axios.get('http://localhost:8000/getTask')
+    axios.get('http://localhost:8000/task')
       .then((resp) => {
         const taskFromServer: TaskType = resp.data;
         setTask(taskFromServer);
@@ -46,7 +46,7 @@ export default function Tasks() {
 
     const payload = { tableName: task.tableName, url: task.pdfUrl, formData };
     const jsonOptions = { headers: { 'Content-Type': 'application/json' } };
-    axios.post('http://localhost:8000/completeTask', payload, jsonOptions).then(() => {
+    axios.post('http://localhost:8000/task', payload, jsonOptions).then(() => {
       setIsSubmittingTask(false);
       getTask();
     }).catch(() => {
