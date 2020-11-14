@@ -1,7 +1,8 @@
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+// eslint-disable-next-line import/extensions
+import axios from '../config/axios-config';
 
 import CustomForm from '../components/custom-form';
 import Viewer from '../components/viewer';
@@ -21,7 +22,7 @@ export default function Tasks() {
   const [isSubmittingTask, setIsSubmittingTask] = useState(false);
 
   const getTask = async () => {
-    axios.get('http://localhost:8000/task')
+    axios.get('/task')
       .then((resp) => {
         const taskFromServer: TaskType = resp.data;
         setTask(taskFromServer);
@@ -46,7 +47,7 @@ export default function Tasks() {
 
     const payload = { tableName: task.tableName, url: task.pdfUrl, formData };
     const jsonOptions = { headers: { 'Content-Type': 'application/json' } };
-    axios.post('http://localhost:8000/task', payload, jsonOptions).then(() => {
+    axios.post('/task', payload, jsonOptions).then(() => {
       setIsSubmittingTask(false);
       getTask();
     }).catch(() => {
