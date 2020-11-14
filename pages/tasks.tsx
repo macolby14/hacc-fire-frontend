@@ -1,6 +1,9 @@
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useRouter } from 'next/router';
+import AuthContext from '../context';
+
 // eslint-disable-next-line import/extensions
 import axios from '../config/axios-config';
 
@@ -8,6 +11,7 @@ import CustomForm from '../components/custom-form';
 import Viewer from '../components/viewer';
 // eslint-disable-next-line import/extensions
 import { TaskType, DataFieldType } from '../shared/shared-types';
+import AuthOnlyRedirect from '../components/auth-only-wrapper';
 
 const useStyles = makeStyles(() => ({
   flexGrow: {
@@ -20,6 +24,8 @@ export default function Tasks() {
   const [task, setTask] = useState<TaskType | null>(null);
   const [isLoadingTask, setIsLoadingTask] = useState(false);
   const [isSubmittingTask, setIsSubmittingTask] = useState(false);
+  const { isLoggedIn } = useContext(AuthContext);
+  const router = useRouter();
 
   const getTask = async () => {
     axios.get('/task')
@@ -36,6 +42,7 @@ export default function Tasks() {
   };
 
   useEffect(() => {
+    if (!isLoggedIn) { router.push('/login'); }
     setIsLoadingTask(true);
     getTask();
   }, []);
@@ -59,17 +66,19 @@ export default function Tasks() {
 
   if (task !== null) {
     displayedTasks = (
-      <Box display="flex" flexDirection="row">
-        <Viewer pdfUrl={task.pdfUrl} isLoading={isLoadingTask} />
-        <div className={classes.flexGrow}>
-          <CustomForm
-            fieldInfo={task.fieldInfo}
-            hasDynamicLabels={false}
-            handleTaskCompletion={handleTaskCompletion}
-            isLoading={isSubmittingTask}
-          />
-        </div>
-      </Box>
+      <AuthOnlyRedirect>
+        <Box display="flex" flexDirection="row">
+          <Viewer pdfUrl={task.pdfUrl} isLoading={isLoadingTask} />
+          <div className={classes.flexGrow}>
+            <CustomForm
+              fieldInfo={task.fieldInfo}
+              hasDynamicLabels={false}
+              handleTaskCompletion={handleTaskCompletion}
+              isLoading={isSubmittingTask}
+            />
+          </div>
+        </Box>
+      </AuthOnlyRedirect>
     );
   }
 

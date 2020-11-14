@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import AuthContext from '../context';
@@ -8,13 +8,23 @@ export default function AuthButton() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const router = useRouter();
 
+  useEffect(() => {
+    if (localStorage.getItem('loggedIn') === 'true') {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   // TODO - Need to fetch and handle failures to login
   const toggleAuth = () => {
     if (isLoggedIn) {
       setIsLoggedIn(false);
+      localStorage.setItem('loggedIn', 'false');
       router.push('http://localhost:8000/auth/logout');
     } else {
       setIsLoggedIn(true);
+      localStorage.setItem('loggedIn', 'true');
       router.push('http://localhost:8000/auth/google');
     }
   };
@@ -22,6 +32,6 @@ export default function AuthButton() {
   const text = isLoggedIn ? 'Logout' : 'Login';
 
   return (
-    <Button color="primary" variant="contained" onClick={toggleAuth}>{text}</Button>
+    <Button color="primary" variant="contained" onClick={toggleAuth} disableElevation disableRipple>{text}</Button>
   );
 }

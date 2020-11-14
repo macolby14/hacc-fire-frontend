@@ -1,12 +1,12 @@
-import { Button } from '@material-ui/core';
-import Link from '../components/link';
+import { Box } from '@material-ui/core';
+
+import AuthButton from '../components/auth-button';
 
 export default function Login() {
   return (
-    <>
-      <h1>Login Page</h1>
-      {/* contained as any because variant is also on Next Link */}
-      <Button component={Link} href="http://localhost:8000/auth/google" color="primary" variant={'contained' as any}>Log In with Google</Button>
-    </>
+    <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+      <h1>Please Login to Visit this Page</h1>
+      <AuthButton />
+    </Box>
   );
 }
