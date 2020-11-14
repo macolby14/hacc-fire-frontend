@@ -15,9 +15,15 @@ const useStyles = makeStyles(() => ({
     height: '70vh',
   },
 }));
+
+type ViewerProps = {
+  pdfUrl: string;
+  isLoading: boolean;
+}
+
 const Viewer = ({
-  pdfUrl,
-}: {pdfUrl: string}) => {
+  pdfUrl, isLoading,
+}: ViewerProps) => {
   const classes = useStyles();
   const [, setNumPages] = useState<number | null>(null);
   const [pageNumber] = useState(1);
@@ -25,16 +31,23 @@ const Viewer = ({
   function onDocumentLoadSuccess({ numPages }: any) {
     setNumPages(numPages);
   }
+
+  let rendered = <div>Loading...</div>;
+
+  if (!isLoading) {
+    rendered = (
+      <Document file={pdfUrl} onLoadSuccess={onDocumentLoadSuccess} className={classes.viewer}>
+        <div className={classes.scrollable}>
+          <Page pageNumber={pageNumber} />
+        </div>
+      </Document>
+    );
+  }
+
   return (
-    <Document
-      file={pdfUrl}
-      onLoadSuccess={onDocumentLoadSuccess}
-      className={classes.viewer}
-    >
-      <div className={classes.scrollable}>
-        <Page pageNumber={pageNumber} />
-      </div>
-    </Document>
+    <>
+      {rendered}
+    </>
   );
 };
 
