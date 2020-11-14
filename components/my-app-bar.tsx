@@ -50,6 +50,7 @@ export default function MyAppBar() {
   const pages = [
     { text: 'Home', link: '/' },
     { text: 'Tasks', link: '/tasks' },
+    { text: 'Leaderboard', link: '/leaderboard' },
   ];
 
   const handleMobileMenuClose = () => {
