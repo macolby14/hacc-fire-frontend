@@ -8,5 +8,6 @@ const instance = axios.create({
 
 // Where you would set stuff like your 'Authorization' header, etc ...
 instance.defaults.withCredentials = true;
+instance.defaults.headers.accessControlAllowOrigins = true;
 
 export default instance;

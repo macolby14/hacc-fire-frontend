@@ -8,6 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import Link from './link';
 
+import AuthButton from './auth-button';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -40,15 +42,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const pages = [
-  { text: 'Home', link: '/' },
-];
-
 export default function MyAppBar() {
   const classes = useStyles();
-
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState<null | HTMLElement>(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const pages = [
+    { text: 'Home', link: '/' },
+    { text: 'Tasks', link: '/tasks' },
+  ];
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -88,6 +90,7 @@ export default function MyAppBar() {
                 {page.text}
               </Button>
             ))}
+            <AuthButton />
           </div>
           <div className={classes.sectionMobile}>
             <IconButton color="inherit" onClick={handleMobileMenuOpen}>

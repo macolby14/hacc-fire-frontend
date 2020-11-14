@@ -9,6 +9,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import MyAppBar from '../components/my-app-bar';
 import Footer from '../components/footer';
 import theme from '../styles/theme.js';
+import AuthContextWrapper from '../components/auth-context-wrapper';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -26,16 +27,18 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <MyAppBar />
-        <main>
-          <Container maxWidth="lg">
-            <Component {...pageProps} />
-          </Container>
-        </main>
-        <Footer />
-      </ThemeProvider>
+      <AuthContextWrapper>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <MyAppBar />
+          <main>
+            <Container maxWidth="lg">
+              <Component {...pageProps} />
+            </Container>
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </AuthContextWrapper>
     </>
   );
 }
