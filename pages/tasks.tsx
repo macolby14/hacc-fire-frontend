@@ -11,7 +11,6 @@ import CustomForm from '../components/custom-form';
 import Viewer from '../components/viewer';
 // eslint-disable-next-line import/extensions
 import { TaskType, DataFieldType } from '../shared/shared-types';
-import AuthOnlyRedirect from '../components/auth-only-wrapper';
 
 const useStyles = makeStyles(() => ({
   flexGrow: {
@@ -66,19 +65,17 @@ export default function Tasks() {
 
   if (task !== null) {
     displayedTasks = (
-      <AuthOnlyRedirect>
-        <Box display="flex" flexDirection="row">
-          <Viewer pdfUrl={task.pdfUrl} isLoading={isLoadingTask} />
-          <div className={classes.flexGrow}>
-            <CustomForm
-              fieldInfo={task.fieldInfo}
-              hasDynamicLabels={false}
-              handleTaskCompletion={handleTaskCompletion}
-              isLoading={isSubmittingTask}
-            />
-          </div>
-        </Box>
-      </AuthOnlyRedirect>
+      <Box display="flex" flexDirection="row">
+        <Viewer pdfUrl={task.pdfUrl} isLoading={isLoadingTask} />
+        <div className={classes.flexGrow}>
+          <CustomForm
+            fieldInfo={task.fieldInfo}
+            hasDynamicLabels={false}
+            handleTaskCompletion={handleTaskCompletion}
+            isLoading={isSubmittingTask}
+          />
+        </div>
+      </Box>
     );
   }
 
