@@ -1,30 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a submission for the Hawaii Annual Code Challenge (HACC 2020).
 
-## Getting Started
+The challenge done was: Hawaii State Archives – Gamification of Crowdsource Indexing
 
-First, run the development server:
+See: https://hacc.hawaii.gov/challenges/ for more info on the challenge.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Frontend Technologies: React, NextJS
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Backend Technologies: NodeJS, Postgresql
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Other Technologies: OAuth2 for Google Login
 
-## Learn More
+Current features:
+-Allow users to login with Google OAuth2 to keep track of their contributions
+-Show leaderboard with score of each user
+-Display pdf served from an Amazon S3 bucket (can be migrated to SharePoint or other storage solution)
+-Read a schema file from S3 bucket and dynamically create DB columns 
+-Server tasks when the file name is specificed before hand (working on dynamically reading all tasks from file)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Upcoming features:
+- Point to a storage folder to create a schema based on an xml file and create tasks automatically
+- Allow csv file download of the postgres data of compelted tasks 
+- Allow form validation of tasks before user submits
+- Allow tracking of tasks so that each task is served to two individuals
+- Allow users to skip a task and go onto next ask
