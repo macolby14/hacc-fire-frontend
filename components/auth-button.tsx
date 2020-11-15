@@ -21,11 +21,11 @@ export default function AuthButton() {
     if (isLoggedIn) {
       setIsLoggedIn(false);
       localStorage.setItem('loggedIn', 'false');
-      router.push('http://localhost:8000/auth/logout');
+      router.push(`${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_HOST_PORT}/auth/logout`);
     } else {
       setIsLoggedIn(true);
       localStorage.setItem('loggedIn', 'true');
-      router.push('http://localhost:8000/auth/google');
+      router.push(`${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_HOST_PORT}/auth/google`);
     }
   };
 

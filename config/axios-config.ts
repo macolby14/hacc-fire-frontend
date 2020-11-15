@@ -3,7 +3,7 @@ import axios from 'axios';
 // Next we make an 'instance' of it
 const instance = axios.create({
 // .. where we make our configurations
-  baseURL: 'http://localhost:8000',
+  baseURL: `${process.env.NEXT_PUBLIC_HOST}:${process.env.NEXT_PUBLIC_HOST_PORT}`,
 });
 
 // Where you would set stuff like your 'Authorization' header, etc ...
