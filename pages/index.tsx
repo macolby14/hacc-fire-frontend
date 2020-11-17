@@ -22,8 +22,11 @@ export default function Home() {
         <title>HACC - Archives</title>
       </Head>
       <main>
-        <Box display="flex" alignContent="center" justifyContent="center">
-          <Typography variant="h1">HACC - Archives</Typography>
+        <Box display="flex" alignContent="center" justifyContent="center" flexDirection="column">
+          <Typography variant="h2" align="center">Hawaii State Archives</Typography>
+          <Typography variant="h4" align="center"> Crowdsourcing Documentation</Typography>
+          <Typography variant="h6" align="center">Help us transcribe the Hawaii State Archives</Typography>
+          <Typography variant="h6" align="center">Login with Google to get started</Typography>
         </Box>
       </main>
     </div>
